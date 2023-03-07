@@ -76,7 +76,7 @@ exports.getOneGroup = async (req, res, next) =>{
                 error: "Bunday guruh topilmad."
             })
         }
-        const toliq = tekshiruv.populate('fan_id admin_id students')
+        const toliq = tekshiruv.populate('fan_id', 'admin_id', 'students')
         await res.status(200).json(toliq)
     } catch (e) {
         await res.status(500).json({
