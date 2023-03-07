@@ -9,7 +9,7 @@
     "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ixtiyor Sadullayev & Hamidjon Sarsenov",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
