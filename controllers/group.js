@@ -58,8 +58,8 @@ exports.removeGroup = async (req,res,next) =>{
 
 exports.getAllGroups = async (req,res,next) =>{
     try {
-        const groups = await GroupModel.find();
-        await res.status(groups)
+        const groups = await GroupModel.find().populate("fan_id")
+        await res.status(200).json(groups)
     } catch (e) {
         await res.status(500).json({
             error: e.message
@@ -70,14 +70,13 @@ exports.getAllGroups = async (req,res,next) =>{
 exports.getOneGroup = async (req, res, next) =>{
     try {
         const id = req.params.id;
-        const tekshiruv = await GroupModel.findById(id);
+        const tekshiruv = await GroupModel.findById(id).populate('fan_id');
         if(!tekshiruv){
             return await res.status(400).json({
                 error: "Bunday guruh topilmad."
             })
         }
-        const toliq = tekshiruv.populate('fan_id', 'admin_id', 'students')
-        await res.status(200).json(toliq)
+        await res.status(200).json(tekshiruv)
     } catch (e) {
         await res.status(500).json({
             error: e.message
